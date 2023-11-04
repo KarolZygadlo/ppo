@@ -187,3 +187,20 @@ class Samochod extends Pojazd implements Naprawialny {
 
 Dzięki temu przykładowi widać, jak można połączyć klasy abstrakcyjne i interfejsy. Klasa `Samochod` dziedziczy cechy i zachowania z klasy `Pojazd` oraz jednocześnie zobowiązuje się do implementacji metody z interfejsu `Naprawialny`. Tym samym, `Samochod` staje się bardziej elastyczny i łatwo można go rozbudować o dodatkowe funkcjonalności.
 
+###  Zadanie do wykonania 
+
+* Utwórz klasę abstrakcyjną Vehicle, która będzie zawierać wspólne cechy i metody dla różnych typów pojazdów.
+* Klasy Bike, Car, Truck powinny dziedziczyć po klasie Vehicle i odpowiednio nadpisywać metody oraz korzystać z cech klasy nadrzędnej.
+* Interfejs ParkingVehicle powinien zostać rozszerzony o dodatkowe metody, takie jak parkingTime(), które zwróci czas parkowania danego pojazdu.
+* Klasy Bike, Car, Truck powinny implementować nowe metody z interfejsu ParkingVehicle.
+* Dodaj nową klasę abstrakcyjną PoweredVehicle dziedziczącą po Vehicle, która będzie reprezentować pojazdy z silnikiem.
+* Klasy Car i Truck powinny dziedziczyć po PoweredVehicle, a klasa Bike bezpośrednio po Vehicle.
+* Klasa PoweredVehicle powinna zawierać dodatkowe pola i metody charakterystyczne dla pojazdów z silnikiem.
+
+Należy również rozszerzyć program o następujące funkcjonalności:
+* Każdy pojazd powinien mieć zdefiniowaną markę, model oraz rok produkcji. Zastanów się, czy te wartości powinny być inicjalizowane przez konstruktor, setter czy publiczny akcesor.
+* Zastanów się które metody i pola powinny być publiczne, a które chronione lub prywatne.
+* Parking powinien mieć możliwość określenia ceny za godzinę parkowania w zależności od typu pojazdu.
+* Dodaj możliwość wyjścia pojazdu z parkingu i obliczania należności za parkowanie.
+* Pojazdy mogą mieć różny czas parkowania.  Na przykład rowery parkują za darmo, samochody płacą standardową stawkę, a ciężarówki płacą podwójnie.
+* Jeżeli na parkingu jest więcej niż jeden pojazd tego samego typu, powinny "pozdrawiać się" na przykład przez wydrukowanie komunikatu "Pozdrawiam inny samochód!".
