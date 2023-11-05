@@ -204,3 +204,10 @@ Należy również rozszerzyć program o następujące funkcjonalności:
 * Dodaj możliwość wyjścia pojazdu z parkingu i obliczania należności za parkowanie.
 * Pojazdy mogą mieć różny czas parkowania.  Na przykład rowery parkują za darmo, samochody płacą standardową stawkę, a ciężarówki płacą podwójnie.
 * Jeżeli na parkingu jest więcej niż jeden pojazd tego samego typu, powinny "pozdrawiać się" na przykład przez wydrukowanie komunikatu "Pozdrawiam inny samochód!".
+* Dodaj klasy ElectricBike i MountainBike, które będą dziedziczyć po klasie Bike. ElectricBike powinien mieć dodatkowe pole batteryCapacity oraz metodę getBatteryCapacity(), a MountainBike pole suspensionType oraz metodę getSuspensionType().
+* Dodaj do interfejsu ParkingVehicle metodę isEligibleForDiscount(), która zwróci, czy dany pojazd może skorzystać ze zniżki na parkingu.
+* W klasie ParkingLot dodaj logikę obliczającą opłatę za parkowanie z uwzględnieniem zniżki.
+* W klasie ParkingLot dodaj listę, która będzie przechowywać historię parkowania pojazdów (np. kiedy pojazd wjechał i wyjechał oraz ile zapłacił).
+* Dodaj metodę printParkingHistory(), która wyświetli historię parkowania wszystkich pojazdów.
+* Rozszerz klasę ParkingLot o różne rodzaje miejsc parkingowych (np. miejsca dla samochodów, rowerów, ciężarówek).
+* Dodaj logikę, która będzie sprawdzać, czy dla danego typu pojazdu jest dostępne miejsce na parkingu zanim zostanie wpuszczony.
