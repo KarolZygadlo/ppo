@@ -8,14 +8,14 @@ Przewidywany plan zajęć kształtuje się następująco:
 
 ### Wprowadzenie do refleksji
 
-Refleksja w programowaniu obiektowym to zdolność programu do analizowania i modyfikowania własnej struktury i zachowania podczas działania. Dzięki niej, program może introspektować (samobadanie) swoje klasy, metody, pola, konstruktory i inne składowe, uzyskując informacje o swojej strukturze oraz dynamicznie modyfikując swoje działanie.
+Refleksja w programowaniu obiektowym to zdolność programu do analizowania i modyfikowania własnej struktury i zachowania podczas działania. Dzięki temu program może "przeanalizować" swoje klasy, metody, pola, konstruktory i inne składowe, uzyskując informacje o swojej strukturze oraz dynamicznie modyfikując swoje działanie.
 
 Refleksja jest niezwykle potężnym narzędziem w zaawansowanym programowaniu obiektowym, umożliwiającym takie operacje jak:
 
-* Dynamiczne Tworzenie Obiektów: Programy mogą tworzyć instancje obiektów bez bezpośredniego odwoływania się do konkretnych klas w czasie kompilacji.
-* Wywoływanie Metod: Metody mogą być wywoływane dynamicznie, nawet jeśli ich nazwy są znane dopiero w czasie wykonania programu.
-* Zarządzanie Zależnościami: Umożliwia dynamiczne zarządzanie zależnościami w aplikacjach, co jest kluczowe w takich wzorcach projektowych jak Inversion of Control (IoC) i Dependency Injection (DI).
-* Implementacja Wzorców Projektowych: Refleksja pozwala na bardziej elastyczne i zaawansowane implementacje różnorodnych wzorców projektowych.
+* Dynamiczne tworzenie obiektów: Programy mogą tworzyć instancje obiektów bez bezpośredniego odwoływania się do konkretnych klas w czasie kompilacji.
+* Wywoływanie metod: Metody mogą być wywoływane dynamicznie, nawet jeśli ich nazwy są znane dopiero w czasie wykonania programu.
+* Zarządzanie zależnościami: Umożliwia dynamiczne zarządzanie zależnościami w aplikacjach, co jest kluczowe w takich wzorcach projektowych jak _Inversion of Control (IoC)_ i _Dependency Injection (DI)_.
+* Implementacja wzorców projektowych: Refleksja pozwala na bardziej elastyczne i zaawansowane implementacje różnorodnych wzorców projektowych.
 
 Refleksja dodaje programom znacznej elastyczności i mocy, umożliwiając techniki, które byłyby trudne lub niemożliwe do zrealizowania w ramach statycznie typowanego języka bez tej funkcjonalności. Przykłady użycia obejmują tworzenie frameworków aplikacyjnych, bibliotek ORM (Object-Relational Mapping), narzędzi do serializacji danych i dynamicznych interfejsów użytkownika. Jednak jej użycie wiąże się także z potencjalnymi wyzwaniami, takimi jak zarządzanie wydajnością i bezpieczeństwem, które wymagają od programistów ostrożności i umiejętności.
 
@@ -40,9 +40,9 @@ public class ReflectionExample {
 }
 ```
 
-W powyższym przykładzie wykorzystano refleksję w Javie do wywołania prywatnej metody `display()` klasy Demo. Najpierw uzyskuje się dostęp do metody poprzez jej nazwę, następnie zmienia się jej dostępność na publiczną `(setAccessible(true))` i wywołuje za pomocą `invoke()`.
+W powyższym przykładzie wykorzystano refleksję w Javie do wywołania prywatnej metody `display()` klasy `Demo`. Najpierw uzyskuje się dostęp do metody poprzez jej nazwę, następnie zmienia się jej dostępność na publiczną `(setAccessible(true))` i wywołuje za pomocą `invoke()`.
 
-W PHP, refleksja pozwala na analizę klas, interfejsów, funkcji i metod. Można używać jej do uzyskiwania informacji o atrybutach klas i do wywoływania metod.
+W PHP refleksja pozwala na analizę klas, interfejsów, funkcji i metod. Można używać jej do uzyskiwania informacji o atrybutach klas i wywoływania metod.
 
 ```php
 class Demo {
@@ -57,7 +57,7 @@ $method->setAccessible(true);
 $method->invoke(new Demo());
 ```
 
-Podobnie jak w Javie, w PHP uzyskuje się dostęp do prywatnej metody `display()` klasy Demo za pomocą refleksji. Reflektor klasy `(ReflectionClass)` jest używany do odnalezienia metody, której dostępność jest zmieniana, a następnie metoda jest wywoływana na nowym obiekcie klasy Demo.
+Podobnie jak w Javie, w PHP uzyskuje się dostęp do prywatnej metody `display()` klasy `Demo` za pomocą refleksji. Reflektor klasy `(ReflectionClass)` jest używany do odnalezienia metody, której dostępność jest zmieniana, a następnie metoda jest wywoływana na nowym obiekcie klasy Demo.
 
 Python oferuje bogate możliwości refleksji, umożliwiając dynamiczne modyfikowanie obiektów i ich zachowania. Funkcje takie jak `getattr()` i `setattr()` są często wykorzystywane.
 
@@ -73,9 +73,9 @@ print(method())
 
 W Pythonie refleksja jest stosowana do uzyskania referencji do metody `display` obiektu `obj`. Funkcja `getattr()` pozwala na pobranie atrybutu `display` z obiektu, który w tym przypadku jest funkcją lambda. Następnie funkcja ta jest wywoływana i jej wynik jest drukowany.
 
-### Podstawowe Koncepcje Refleksji
+### Podstawowe koncepcje refleksji
 
-#### Przegląd Klas i Interfejsów Związanych z Refleksją
+#### Przegląd klas i interfejsów związanych z refleksją
 
 - **Java**: 
   - **Klasy**: `Class`, `Method`, `Field`, `Constructor`.
@@ -90,7 +90,7 @@ W Pythonie refleksja jest stosowana do uzyskania referencji do metody `display` 
   - **Funkcje Wbudowane**: `getattr()`, `setattr()`, `type()`, `isinstance()`.
   - **Zastosowanie**: Introspekcja obiektów, listowanie członków i typów. `inspect.getmembers(obiekt)` do uzyskiwania listy członków obiektu.
 
-#### Dostęp do Informacji o Klasach, Metodach, Polach i Konstruktorach
+#### Dostęp do informacji o klasach, metodach, polach i konstruktorach
 
 Refleksja pozwala na wykrywanie struktury klas, informacji o metodach, polach, konstruktorach i metadanych. Znajduje zastosowanie w:
 
@@ -98,30 +98,30 @@ Refleksja pozwala na wykrywanie struktury klas, informacji o metodach, polach, k
 - **Serializacji i deserializacji**: Odczyt i zapis stanu obiektów do różnych formatów.
 - **Frameworkach i bibliotekach**: Automatyczne mapowanie danych, wstrzykiwanie zależności.
 
-#### Rozróżnienie między Refleksją Statyczną a Dynamiczną
+#### Rozróżnienie między refleksją statyczną a dynamiczną
 
-- **Statyczna Refleksja**:
+- **Statyczna refleksja**:
   - **Zastosowanie**: Analiza kodu źródłowego przed wykonaniem.
-  - **Przykłady**: Narzędzia analizy statycznej kodu, generatory kodu, linters.
+  - **Przykłady**: Narzędzia analizy statycznej kodu, generatory kodu, lintery.
   - **Cel**: Wykrywanie błędów, optymalizacja, generowanie dokumentacji.
 
-- **Dynamiczna Refleksja**:
+- **Dynamiczna refleksja**:
   - **Zastosowanie**: Manipulacja obiektami w czasie wykonania programu.
   - **Przykłady**: Dynamiczne tworzenie obiektów, wywoływanie metod, modyfikacja pól.
   - **Cel**: Elastyczność i dynamika aplikacji, zarządzanie zależnościami, adaptacja do środowiska.
 
 Refleksja wymaga ostrożnego stosowania ze względu na potencjalne trudności w utrzymaniu kodu, wydajności i bezpieczeństwa.
 
-### Dostęp do Metadanych Klasy
+### Dostęp do metadanych klasy
 
-#### Jak Uzyskać Informacje o Klasie w Czasie Wykonania
+#### Jak uzyskać informacje o klasie w czasie wykonywania kodu?
 Wykorzystanie refleksji umożliwia programom odczyt informacji o klasach, takich jak:
 - **Nazwa Klasy**: Identyfikacja typu obiektu w czasie wykonania.
 - **Metody**: Informacje o dostępnych metodach, ich nazwach, typach zwracanych i parametrach.
 - **Pola**: Odczyt stanów klasy, w tym typów i wartości.
 - **Adnotacje**: W językach jak Java, odczyt adnotacji klasy.
 
-#### Przykłady Odczytu Nazw Klas, Metod, Pól i Właściwości
+#### Przykłady odczytu nazw klas, metod, pól i właściwości
 
 - **Java**: 
   - `Class.getName()` do uzyskania nazwy klasy.
@@ -133,12 +133,12 @@ Wykorzystanie refleksji umożliwia programom odczyt informacji o klasach, takich
   - `type()` do identyfikacji typu obiektu.
   - `dir()` do uzyskiwania listy atrybutów klasy.
 
-#### Użycie Refleksji do Listowania Dostępnych Metod i Pól
+#### Użycie refleksji do listowania dostępnych metod i pól
 Refleksja pozwala na dynamiczne listowanie metod i pól klasy, co jest przydatne w debugowaniu i inspekcji kodu.
 
-### Tworzenie i Manipulowanie Obiektami za pomocą Refleksji
+### Tworzenie i manipulowanie obiektami za pomocą refleksji
 
-#### Tworzenie Instancji Obiektów w Czasie Wykonania
+#### Tworzenie instancji obiektów w czasie wykonania
 Refleksja umożliwia dynamiczne tworzenie instancji obiektów, co pozwala na większą elastyczność w zależności od kontekstu wykonania.
 
 ##### Przykłady:
@@ -146,23 +146,23 @@ Refleksja umożliwia dynamiczne tworzenie instancji obiektów, co pozwala na wi�
 - **PHP**: `ReflectionClass('NazwaKlasy').newInstance()`.
 - **Python**: Połączenie `type()` z `__call__()`.
 
-#### Modyfikowanie Wartości Pól i Wywoływanie Metod
+#### Modyfikowanie wartości pól i wywoływanie metod
 Możliwość zmiany wartości pól i wywoływania metod, nawet jeśli są one prywatne.
 
 ##### Zastosowania:
 - **Testowanie**: Modyfikacja stanu wewnętrznego obiektów.
 - **Dynamika**: Adaptacja zachowania obiektów w czasie wykonania.
 
-#### Omówienie Bezpieczeństwa i Wydajności przy Użyciu Refleksji
+#### Omówienie bezpieczeństwa i wydajności przy użyciu refleksji
 Refleksja wiąże się z wyzwaniami, takimi jak:
 - **Bezpieczeństwo**: Ryzyko związane z modyfikacją prywatnych pól.
 - **Wydajność**: Operacje refleksyjne mogą być kosztowniejsze niż bezpośrednie wywołania.
 
 Użycie refleksji wymaga rozwagi, ze szczególnym uwzględnieniem konsekwencji dla utrzymania kodu, wydajności i bezpieczeństwa.
 
-## 5. Refleksja a Dostęp do Prywatnych Członów
+## Refleksja a dostęp do prywatnych elementów
 
-### Przełamywanie Enkapsulacji: Dostęp do Prywatnych Pól i Metod
+### Przełamywanie enkapsulacji: dostęp do prywatnych pól i metod
 Refleksja umożliwia dostęp do prywatnych pól i metod w klasach, co może naruszać zasadę enkapsulacji.
 
 #### Przykłady:
@@ -170,41 +170,41 @@ Refleksja umożliwia dostęp do prywatnych pól i metod w klasach, co może naru
 - **PHP**: `ReflectionProperty` i `setAccessible(true)` do manipulacji prywatnymi właściwościami.
 - **Python**: Bezpośredni dostęp do atrybutów z podkreślnikiem (`_`).
 
-#### Etyka i Ryzyka Związane z Modyfikacją Prywatnych Elementów
+#### Etyka i ryzyka związane z modyfikacją prywatnych elementów
 Modyfikacja prywatnych składowych może prowadzić do nieprzewidywalnych zachowań, błędów i problemów z synchronizacją.
 
-#### Przykłady i Zastosowania Praktyczne
-Refleksja jest używana w testowaniu jednostkowym, narzędziach ORM, frameworkach MVC.
+#### Przykłady i zastosowania praktyczne
+Refleksja jest używana w testowaniu jednostkowym, narzędziach ORM oraz frameworkach MVC.
 
-### Zastosowania Refleksji
+### Zastosowania refleksji
 
-#### Debugowanie i Testowanie
+#### Debugowanie i testowanie
 Refleksja umożliwia inspekcję i modyfikację stanu obiektów, co jest przydatne w testowaniu i debugowaniu.
 
-#### Programowanie Generyczne i Kontenery DI
+#### Programowanie generyczne i kontenery DI
 Refleksja jest kluczowa w programowaniu generycznym i kontenerach Dependency Injection.
 
-#### Automatyzacja i Metaprogramowanie
+#### Automatyzacja i metaprogramowanie
 Refleksja umożliwia pisanie kodu, który może analizować i modyfikować sam siebie.
 
-### Wady i Ograniczenia Refleksji
+### Wady i ograniczenia refleksji
 
-#### Kwestie Wydajnościowe
+#### Kwestie wydajnościowe
 Nadmierne stosowanie refleksji może obniżać wydajność aplikacji.
 
-#### Problemy z Bezpieczeństwem
+#### Problemy z bezpieczeństwem
 Nieostrożne użycie refleksji może prowadzić do luk bezpieczeństwa.
 
-#### Trudności w Utrzymaniu i Debugowaniu Kodu
+#### Trudności w utrzymaniu i debugowaniu kodu
 Kod z refleksją może być trudniejszy w utrzymaniu i debugowaniu.
 
-### Dobre Praktyki i Alternatywy dla Refleksji
+### Dobre praktyki i alternatywy dla refleksji
 
-#### Kiedy Warto Używać Refleksji, a Kiedy Unikać
+#### Kiedy warto używać refleksji, a kiedy unikać
 Refleksja powinna być używana tylko wtedy, gdy jest to uzasadnione.
 
-#### Dobre Praktyki Programowania z Użyciem Refleksji
+#### Dobre praktyki programowania z użyciem refleksji
 Kontrolowane i przemyślane stosowanie refleksji, unikanie jej nadużywania.
 
-#### Alternatywne Techniki i Narzędzia
+#### Alternatywne techniki i narzędzia
 Alternatywne techniki, takie jak wzorce projektowe, metaprogramowanie, czy biblioteki.
