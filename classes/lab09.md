@@ -8,16 +8,16 @@ Przewidywany plan zajęć kształtuje się następująco:
 
 ### Wyjątki w programowaniu 
 
-Wyjątek to zdarzenie, które występuje podczas wykonania programu i zakłóca jego normalny przepływ. Wyjątki są używane do sygnalizowania błędów oraz innych nieoczekiwanych zdarzeń, takich jak niewłaściwe dane wejściowe, problemy z połączeniem sieciowym czy błędy plików. W Javie i Pythonie wyjątki są obiektami, podczas gdy w PHP są to instancje klas rozszerzających klasę Exception lub Error.
+Wyjątek to zdarzenie, które występuje podczas wykonania programu i zakłóca jego normalny przepływ. Wyjątki są używane do sygnalizowania błędów oraz innych nieoczekiwanych zdarzeń, takich jak niewłaściwe dane wejściowe, problemy z połączeniem sieciowym czy błędy plików. W Javie i Pythonie wyjątki są obiektami, podczas gdy w PHP są to instancje klas rozszerzających klasę `Exception` lub `Error`.
 
 ### Podział wyjątków na sprawdzanie i niesprawdzane
 
 Podział wyjątków: sprawdzane i niesprawdzane:
 
-* **Sprawdzane** (Checked) Wyjątki: Są to wyjątki, które muszą być obsłużone w kodzie. Java stosuje tę kategorię, gdzie wyjątki takie jak `IOException` wymagają obsługi za pomocą try-catch lub propagacji. W PHP i Pythonie nie ma formalnego rozróżnienia na wyjątki sprawdzane i niesprawdzane.
-* **Niesprawdzane** (Unchecked) Wyjątki: To wyjątki, które nie wymagają jawnej obsługi. W Javie są to głównie wyjątki dziedziczące po `RuntimeException`, jak `NullPointerException`. W Pythonie i PHP wszystkie wyjątki można traktować jako niesprawdzane, gdyż języki te nie wymuszają ich obsługi.
+* **Sprawdzane** _(Checked)_ Wyjątki: Są to wyjątki, które muszą być obsłużone w kodzie. Java stosuje tę kategorię, gdzie wyjątki takie jak `IOException` wymagają obsługi za pomocą `try-catch` lub propagacji. W PHP i Pythonie nie ma formalnego rozróżnienia na wyjątki sprawdzane i niesprawdzane.
+* **Niesprawdzane** _(Unchecked)_ Wyjątki: To wyjątki, które nie wymagają jawnej obsługi. W Javie są to głównie wyjątki dziedziczące po `RuntimeException`, jak `NullPointerException`. W Pythonie i PHP wszystkie wyjątki można traktować jako niesprawdzane, gdyż języki te nie wymuszają ich obsługi.
 
-### Obsluga wyjątków 
+### Obsługa wyjątków 
 
 Mechanizm ten pozwala na przechwycenie wyjątku i wykonanie określonych działań w odpowiedzi. Blok `try` zawiera kod, który może wygenerować wyjątek. Blok `catch` przechwytuje wyjątek i definiuje sposób jego obsługi. Blok `finally`, który jest opcjonalny, zawiera kod, który zostanie wykonany niezależnie od tego, czy wyjątek został wygenerowany i obsłużony, czy nie.
 
@@ -50,25 +50,22 @@ finally:
     # kod, który zostanie wykonany zawsze
 ```
 
-### Obsluga wyjątków 
-
-Kiedy tworzyć własne wyjątki:
+### Własne wyjątki
+Kiedy tworzyć własne wyjątki?
 
 Własne wyjątki są niezwykle przydatne w sytuacjach, gdy chcemy zapewnić bardziej specyficzną obsługę błędów niż to, co oferują standardowe wyjątki. Są one szczególnie użyteczne w przypadkach, gdy:
 
-* **Standardowe Wyjątki Są Niewystarczające**: Gdy potrzebujemy przekazać bardziej szczegółowe informacje o błędzie, które standardowe wyjątki nie są w stanie uchwycić.
-* **Specyficzne Scenariusze Błędów**: Na przykład, w aplikacji biznesowej, może być potrzebne rozróżnienie między różnymi rodzajami błędów danych wejściowych lub logiki biznesowej.
-* **Lepsza Kontrola nad Przepływem Programu**: Własne wyjątki pozwalają na bardziej precyzyjne sterowanie przepływem programu w przypadku wystąpienia określonych warunków błędu.
+* **Standardowe wyjątki są niewystarczające**: Gdy potrzebujemy przekazać bardziej szczegółowe informacje o błędzie, które standardowe wyjątki nie są w stanie uchwycić.
+* **Specyficzne scenariusze błędów**: Na przykład w aplikacji biznesowej, może być potrzebne rozróżnienie między różnymi rodzajami błędów danych wejściowych lub logiki biznesowej.
+* **Lepsza kontrola nad przepływem programu**: Własne wyjątki pozwalają na bardziej precyzyjne sterowanie przepływem programu w przypadku wystąpienia określonych warunków błędu.
 
-Jak tworzyć własne wyjątki:
+Jak tworzyć własne wyjątki?
 
 * Java: Rozszerzyć klasę `Exception` lub `RuntimeException`, w zależności od tego, czy wyjątek ma być sprawdzany, czy niesprawdzany.
 * PHP: Rozszerzyć klasę `Exception`. PHP umożliwia tworzenie hierarchii wyjątków, dzięki czemu możemy tworzyć specjalistyczne wyjątki dla różnych przypadków użycia.
 * Python: Rozszerzyć klasę `Exception` lub inną wbudowaną klasę wyjątków, aby dostosować wyjątek do specyficznych potrzeb aplikacji.
 
 Przykład w Javie:
-
-java
 
 ```java 
 public class InvalidUserInputException extends Exception {
@@ -99,6 +96,6 @@ class InvalidUserInputException extends Exception {
 W powyższym przykładzie:
 
 * Konstruktor: Przyjmuje parametr `$message`, który jest przekazywany do konstruktora klasy bazowej `Exception`. Pozwala to na przechowywanie wiadomości błędu w obiekcie wyjątku.
-* Metoda `__toString`: Została nadpisana, aby zapewnić niestandardową reprezentację tekstową wyjątku, co jest przydatne podczas logowania błędów lub ich wyświetlania.
+* Metoda `__toString()`: Została nadpisana, aby zapewnić niestandardową reprezentację tekstową wyjątku, co jest przydatne podczas logowania błędów lub ich wyświetlania.
 
 Przy użyciu takiego wyjątku w kodzie PHP, możemy dokładniej określić rodzaj błędu i odpowiednio go obsłużyć, co zwiększa czytelność i efektywność obsługi błędów w naszej aplikacji.
