@@ -14,7 +14,7 @@ Wyjątek to zdarzenie, które występuje podczas wykonania programu i zakłóca 
 
 Podział wyjątków: sprawdzane i niesprawdzane:
 
-* **Sprawdzane** _(Checked)_ Wyjątki: Są to wyjątki, które muszą być obsłużone w kodzie. Java stosuje tę kategorię, gdzie wyjątki takie jak `IOException` wymagają obsługi za pomocą `try-catch` lub propagacji. W PHP i Pythonie nie ma formalnego rozróżnienia na wyjątki sprawdzane i niesprawdzane.
+* **Sprawdzane** _(Checked)_ Wyjątki: Są to wyjątki, które muszą być obsłużone w kodzie. Java stosuje tę kategorię, gdzie wyjątki takie jak `IOException` wymagają obsługi za pomocą `try-catch` lub propagacji(W programownaiu propagacja zwykle odnosi się do przekazywania informacji między poszczególnymi modułami lub częściami programu). W PHP i Pythonie nie ma formalnego rozróżnienia na wyjątki sprawdzane i niesprawdzane.
 * **Niesprawdzane** _(Unchecked)_ Wyjątki: To wyjątki, które nie wymagają jawnej obsługi. W Javie są to głównie wyjątki dziedziczące po `RuntimeException`, jak `NullPointerException`. W Pythonie i PHP wszystkie wyjątki można traktować jako niesprawdzane, gdyż języki te nie wymuszają ich obsługi.
 
 ### Obsługa wyjątków 
@@ -22,6 +22,7 @@ Podział wyjątków: sprawdzane i niesprawdzane:
 Mechanizm ten pozwala na przechwycenie wyjątku i wykonanie określonych działań w odpowiedzi. Blok `try` zawiera kod, który może wygenerować wyjątek. Blok `catch` przechwytuje wyjątek i definiuje sposób jego obsługi. Blok `finally`, który jest opcjonalny, zawiera kod, który zostanie wykonany niezależnie od tego, czy wyjątek został wygenerowany i obsłużony, czy nie.
 
 ```java
+//Java
 try {
     // kod, który może generować wyjątek
 } catch (IOException e) {
@@ -32,6 +33,7 @@ try {
 ```
 
 ```php
+//PHP
 try {
     // kod, który może generować wyjątek
 } catch (Exception $e) {
@@ -42,6 +44,7 @@ try {
 ```
 
 ```python
+# Python
 try:
     # kod, który może generować wyjątek
 except IOError as e:
@@ -65,9 +68,8 @@ Jak tworzyć własne wyjątki?
 * PHP: Rozszerzyć klasę `Exception`. PHP umożliwia tworzenie hierarchii wyjątków, dzięki czemu możemy tworzyć specjalistyczne wyjątki dla różnych przypadków użycia.
 * Python: Rozszerzyć klasę `Exception` lub inną wbudowaną klasę wyjątków, aby dostosować wyjątek do specyficznych potrzeb aplikacji.
 
-Przykład w Javie:
-
 ```java 
+// Java
 public class InvalidUserInputException extends Exception {
     public InvalidUserInputException(String message) {
         super(message);
@@ -75,13 +77,12 @@ public class InvalidUserInputException extends Exception {
 }
 ```
 
-Przykłady własnych wyjątków:
+W powyższym przykładzie tworzymy niestandardowy wyjątek o nazwie InvalidUserInputException. Jego zadaniem jest wskazywanie na błędy wynikające z nieprawidłowych danych wejściowych użytkownika. Wyjątek ten pozwala na bardziej szczegółowe identyfikowanie i obsługę konkretnego rodzaju problemów, jakie mogą wystąpić podczas interakcji użytkownika z programem.
 
-* Java/Python: Utworzenie wyjątku `InvalidUserInputException` do sygnalizowania błędów związanych z danymi wejściowymi użytkownika.
-
-* PHP: Podobny wyjątek może zostać utworzony w PHP w następujący sposób:
+Podobny wyjątek może zostać utworzony w PHP w następujący sposób:
 
 ```php
+// PHP
 class InvalidUserInputException extends Exception {
         public function __construct($message, $code = 0, Exception $previous = null) {
             parent::__construct($message, $code, $previous);
@@ -92,10 +93,6 @@ class InvalidUserInputException extends Exception {
         }
 }
 ```
-
-W powyższym przykładzie:
-
-* Konstruktor: Przyjmuje parametr `$message`, który jest przekazywany do konstruktora klasy bazowej `Exception`. Pozwala to na przechowywanie wiadomości błędu w obiekcie wyjątku.
-* Metoda `__toString()`: Została nadpisana, aby zapewnić niestandardową reprezentację tekstową wyjątku, co jest przydatne podczas logowania błędów lub ich wyświetlania.
+Konstruktor: Przyjmuje parametr `$message`, który jest przekazywany do konstruktora klasy bazowej `Exception`. Pozwala to na przechowywanie wiadomości błędu w obiekcie wyjątku. Metoda `__toString()`: Została nadpisana, aby zapewnić niestandardową reprezentację tekstową wyjątku, co jest przydatne podczas logowania błędów lub ich wyświetlania.
 
 Przy użyciu takiego wyjątku w kodzie PHP, możemy dokładniej określić rodzaj błędu i odpowiednio go obsłużyć, co zwiększa czytelność i efektywność obsługi błędów w naszej aplikacji.
