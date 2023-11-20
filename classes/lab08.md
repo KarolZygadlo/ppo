@@ -8,7 +8,7 @@ Przewidywany plan zajęć kształtuje się następująco:
 
 ### Funkcje anonimowe
 
-Funkcje anonimowe, znane także jako wyrażenia lambda lub closures, stanowią ważny element wielu współczesnych języków programowania, takich jak PHP, Java, JavaScript i Python. W PHP są one reprezentowane jako obiekty klasy Closure. Funkcje anonimowe dają możliwość tworzenia funkcji bez konieczności nadawania im nazwy. Mogą one być przypisywane do zmiennych, przekazywane jako argumenty, a także zwracane przez inne funkcje. Ich główną zaletą jest umożliwienie pisania kodu, który jest zarówno zwięzły, jak i bardziej elastyczny.
+Funkcje anonimowe, znane także jako _wyrażenia lambda_ lub _closures_, stanowią ważny element wielu współczesnych języków programowania, takich jak PHP, Java, JavaScript i Python. W PHP są one reprezentowane jako obiekty klasy Closure. Funkcje anonimowe dają możliwość tworzenia funkcji bez konieczności nadawania im nazwy. Mogą one być przypisywane do zmiennych, przekazywane jako argumenty, a także zwracane przez inne funkcje. Ich główną zaletą jest umożliwienie pisania kodu, który jest zarówno zwięzły, jak i bardziej elastyczny.
 
 ```php
 $double = function($value) {
@@ -29,15 +29,15 @@ List<Integer> doubled = numbers.stream()
 System.out.println(doubled); // Wynik: [2, 4, 6, 8, 10]
 ```
 
-W tym przykładzie wykorzystujemy wyrażenia lambda w Javie do transformacji listy liczb. Używamy Stream API, które jest potężnym narzędziem do przetwarzania sekwencji danych w Javie 8 i nowszych wersjach. Metoda `stream()` tworzy strumień danych z listy numbers. Następnie, za pomocą metody `map`, aplikujemy funkcję `lambda n -> n * 2` do każdego elementu strumienia. Oznacza to, że każda liczba w strumieniu jest podwajana. Na koniec, za pomocą `collect(Collectors.toList())`, transformujemy strumień z powrotem do listy. Cały proces demonstruje, jak wyrażenia lambda w Javie pozwalają na eleganckie i efektywne manipulowanie kolekcjami danych.
+W tym przykładzie wykorzystujemy wyrażenia lambda w Javie do transformacji listy liczb. Używamy Stream API, które jest potężnym narzędziem do przetwarzania sekwencji danych w Javie 8 i nowszych wersjach. Metoda `stream()` tworzy strumień danych z listy `numbers`. Następnie, za pomocą metody `map`, aplikujemy funkcję `lambda n -> n * 2` do każdego elementu strumienia. Oznacza to, że każda liczba w strumieniu jest podwajana. Na koniec, za pomocą `collect(Collectors.toList())`, transformujemy strumień z powrotem do listy. Cały proces demonstruje, jak wyrażenia lambda w Javie pozwalają na eleganckie i efektywne manipulowanie kolekcjami danych.
 
-### Wykorzystanie Wyrażeń Lambda – Praktyczne Aspekty
+### Wykorzystanie wyrażeń lambda – praktyczne aspekty
 
 Wyrażenia lambda w programowaniu to prawdziwy przełom w zakresie upraszczania kodu, szczególnie przy pracy z różnymi rodzajami kolekcji – takimi jak tablice, listy, drzewa, grafy i inne struktury danych. Wprowadzają one znaczną prostotę i elastyczność. Głównie spotykamy je w formie par nawiasów okrągłych, które mogą zawierać parametry (w przypadku jednego parametru nawiasy są opcjonalne), połączonych z operatorem "strzałki", a następnie instrukcją lub blokiem instrukcji. Istnieją dwie główne formy definiowania wyrażeń lambda:
 
 * Jedna instrukcja:
 
-Wyrażenia lambda doskonale radzą sobie z redukowaniem kodu do jego istoty. Zamiast tworzyć osobną metodę z wieloma liniami "szumu", jak w przypadku:
+Wyrażenia lambda doskonale radzą sobie z redukowaniem kodu do jego istoty. Zamiast tworzyć osobną metodę z wieloma liniami "szumu" jak w przypadku:
 
 ```java
 void printSquare(int n) {
