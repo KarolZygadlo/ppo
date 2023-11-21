@@ -8,7 +8,7 @@ Przewidywany plan zajęć kształtuje się następująco:
 
 ### Funkcje anonimowe
 
-Funkcje anonimowe, znane także jako _wyrażenia lambda_ lub _closures_, stanowią ważny element wielu współczesnych języków programowania, takich jak PHP, Java, JavaScript i Python. W PHP są one reprezentowane jako obiekty klasy Closure. Funkcje anonimowe dają możliwość tworzenia funkcji bez konieczności nadawania im nazwy. Mogą one być przypisywane do zmiennych, przekazywane jako argumenty, a także zwracane przez inne funkcje. Ich główną zaletą jest umożliwienie pisania kodu, który jest zarówno zwięzły, jak i bardziej elastyczny.
+Funkcje anonimowe, znane także jako _wyrażenia lambda_ lub _closures_, stanowią ważny element wielu współczesnych języków programowania, takich jak PHP, Java, JavaScript czy Python. W PHP są one reprezentowane jako obiekty klasy Closure. Funkcje anonimowe dają możliwość tworzenia funkcji bez konieczności nadawania im nazwy. Mogą one być przypisywane do zmiennych, przekazywane jako argumenty, a także zwracane przez inne funkcje. Ich główną zaletą jest umożliwienie pisania kodu, który jest zarówno zwięzły, jak i bardziej elastyczny.
 
 ```php
 // PHP
