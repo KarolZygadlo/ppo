@@ -46,17 +46,35 @@ void printSquare(int n) {
 }
 ```
 
-można skorzystać z wyrażeń lambda do osiągnięcia tego samego rezultatu w znacznie prostszy sposób. W przypadku pojedynczej instrukcji, lambda redukuje kod do jego istoty, a przy potrzebie wykonania serii operacji, używa się bloku kodu otoczonego klamrami.
-
-Wyrażenia lambda są również użyteczne przy "podpinaniu" instrukcji do zdarzeń w aplikacjach, na przykład przy użyciu addActionListener w interfejsach graficznych czy metody forEach w kolekcjach. Często wykorzystuje się interfejsy funkcyjne, które charakteryzują się jedną metodą abstrakcyjną, np.:
+można skorzystać z wyrażeń lambda do osiągnięcia tego samego rezultatu w znacznie prostszy sposób.
 
 ```java
-// Java
-@FunctionalInterface
-public interface LambdaWithNumber {
-    void printN(int n);
-}
-
-// Użycie interfejsu
-lwn.printN(50);
+// Java z wyrażeniem lambda
+Consumer<Integer> printSquareLambda = n -> System.out.println("Kwadrat liczby " + n + " wynosi " + n*n);
 ```
+
+W tym przypadku, lambda n -> System.out.println("Kwadrat liczby " + n + " wynosi " + n*n) jest funkcją przyjmującą jeden argument (n) i wykonującą pojedynczą instrukcję. Lambda redukuje kod do jego istoty, a przy potrzebie wykonania serii operacji, używa się bloku kodu otoczonego klamrami.
+
+Wyrażenia lambda są również użyteczne przy "podpinaniu" instrukcji do zdarzeń w aplikacjach, na przykład przy użyciu addActionListener w interfejsach graficznych czy metody forEach w kolekcjach. 
+
+```php
+<?php
+// Przykładowa tablica
+$numbers = [1, 2, 3, 4, 5];
+
+// Użycie wyrażenia lambda z array_map
+$squaredNumbers = array_map(function($n) {
+    return $n * $n;
+}, $numbers);
+
+// Wyświetlenie wyników
+foreach ($squaredNumbers as $value) {
+    echo $value . ' ';
+}
+?>
+```
+
+* Tworzymy tablicę liczb `($numbers)`.
+* Używamy `array_map` z anonimową funkcją `(function($n) { return $n * $n; })`, która podnosi każdy element tablicy do kwadratu.
+* Wynik `($squaredNumbers)` jest tablicą zawierającą kwadraty pierwotnych liczb.
+* Iterujemy przez tablicę wynikową i wyświetlamy jej elementy.
