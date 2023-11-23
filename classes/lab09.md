@@ -96,3 +96,33 @@ class InvalidUserInputException extends Exception {
 Konstruktor: Przyjmuje parametr `$message`, który jest przekazywany do konstruktora klasy bazowej `Exception`. Pozwala to na przechowywanie wiadomości błędu w obiekcie wyjątku. Metoda `__toString()`: Została nadpisana, aby zapewnić niestandardową reprezentację tekstową wyjątku, co jest przydatne podczas logowania błędów lub ich wyświetlania.
 
 Przy użyciu takiego wyjątku w kodzie PHP, możemy dokładniej określić rodzaj błędu i odpowiednio go obsłużyć, co zwiększa czytelność i efektywność obsługi błędów w naszej aplikacji.
+
+```php
+declare(strict_types=1);
+
+namespace Sprawby\Exceptions;
+
+use Symfony\Component\HttpFoundation\Response;
+
+class InvoiceCouldNotBeDeletedException extends ApiException
+{
+    protected $code = Response::HTTP_BAD_REQUEST;
+    protected $message = "Invoice could not be deleted";
+}
+```
+
+```php
+/**
+     * @throws InvoiceCouldNotBeDeletedException
+     */
+    public function destroy(Revenue $revenue, DestroyRevenueAction $destroyRevenueAction): Response
+    {
+        if (!$revenue->deletable()) {
+            throw new InvoiceCouldNotBeDeletedException();
+        }
+
+        $destroyRevenueAction->execute($revenue);
+
+        return response()->noContent();
+    }
+```

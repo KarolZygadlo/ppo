@@ -1,10 +1,12 @@
 ## Funkcje anonimowe
 
 ### Agenda
+
 Przewidywany plan zajęć kształtuje się następująco:
-* przedstawienie idei funkcji anonimowych,
-* analiza zadania przykładowego,
-* indywidualna praca nad listą zadań.
+
+- przedstawienie idei funkcji anonimowych,
+- analiza zadania przykładowego,
+- indywidualna praca nad listą zadań.
 
 ### Funkcje anonimowe
 
@@ -53,9 +55,9 @@ można skorzystać z wyrażeń lambda do osiągnięcia tego samego rezultatu w z
 Consumer<Integer> printSquareLambda = n -> System.out.println("Kwadrat liczby " + n + " wynosi " + n*n);
 ```
 
-W tym przypadku, lambda n -> System.out.println("Kwadrat liczby " + n + " wynosi " + n*n) jest funkcją przyjmującą jeden argument (n) i wykonującą pojedynczą instrukcję. Lambda redukuje kod do jego istoty, a przy potrzebie wykonania serii operacji, używa się bloku kodu otoczonego klamrami.
+W tym przypadku, lambda n -> System.out.println("Kwadrat liczby " + n + " wynosi " + n\*n) jest funkcją przyjmującą jeden argument (n) i wykonującą pojedynczą instrukcję. Lambda redukuje kod do jego istoty, a przy potrzebie wykonania serii operacji, używa się bloku kodu otoczonego klamrami.
 
-Wyrażenia lambda są również użyteczne przy "podpinaniu" instrukcji do zdarzeń w aplikacjach, na przykład przy użyciu addActionListener w interfejsach graficznych czy metody forEach w kolekcjach. 
+Wyrażenia lambda są również użyteczne przy "podpinaniu" instrukcji do zdarzeń w aplikacjach, na przykład przy użyciu addActionListener w interfejsach graficznych czy metody forEach w kolekcjach.
 
 ```php
 <?php
@@ -74,7 +76,126 @@ foreach ($squaredNumbers as $value) {
 ?>
 ```
 
-* Tworzymy tablicę liczb `($numbers)`.
-* Używamy `array_map` z anonimową funkcją `(function($n) { return $n * $n; })`, która podnosi każdy element tablicy do kwadratu.
-* Wynik `($squaredNumbers)` jest tablicą zawierającą kwadraty pierwotnych liczb.
-* Iterujemy przez tablicę wynikową i wyświetlamy jej elementy.
+- Tworzymy tablicę liczb `($numbers)`.
+- Używamy `array_map` z anonimową funkcją `(function($n) { return $n * $n; })`, która podnosi każdy element tablicy do kwadratu.
+- Wynik `($squaredNumbers)` jest tablicą zawierającą kwadraty pierwotnych liczb.
+- Iterujemy przez tablicę wynikową i wyświetlamy jej elementy.
+
+### Przykłady
+
+```php
+class Product {
+    public $name;
+    public $price;
+
+    public function __construct($name, $price) {
+        $this->name = $name;
+        $this->price = $price;
+    }
+}
+
+$products = [
+    new Product("Produkt A", 50),
+    new Product("Produkt B", 20),
+    new Product("Produkt C", 50)
+];
+
+usort($products, function($a, $b) {
+    if ($a->price == $b->price) {
+        return $a->name <=> $b->name;
+    }
+    return $a->price <=> $b->price;
+});
+```
+
+```php
+$users = [
+    ['id' => 1, 'name' => 'Jan'],
+    ['id' => 2, 'name' => 'Anna']
+];
+
+$orders = [
+    ['user_id' => 2, 'order' => 'Książka'],
+    ['user_id' => 1, 'order' => 'Komputer']
+];
+
+$userOrders = array_map(function($user) use ($orders) {
+    $userOrders = array_filter($orders, function($order) use ($user) {
+        return $order['user_id'] == $user['id'];
+    });
+    return ['user' => $user, 'orders' => $userOrders];
+}, $users);
+```
+
+```java
+class Employee {
+    String department;
+    double salary;
+
+    // Konstruktor, gettery, settery itp.
+}
+
+List<Employee> employees = // inicjalizacja listy pracowników
+
+Map<String, List<Employee>> groupedByDepartment = employees.stream()
+    .sorted(Comparator.comparing(Employee::getDepartment)
+                      .thenComparing(Employee::getSalary))
+    .collect(Collectors.groupingBy(Employee::getDepartment));
+```
+
+```php
+$handleException = function($e) {
+    echo "Wystąpił wyjątek: " . $e->getMessage();
+};
+
+try {
+    // próba wykonania jakiejś operacji
+    throw new Exception("Coś poszło nie tak.");
+} catch (Exception $e) {
+    $handleException($e);
+}
+```
+
+```java
+JButton button = new JButton("Kliknij mnie");
+button.addActionListener(e -> {
+    System.out.println("Przycisk został naciśnięty.");
+});
+```
+
+```java
+List<String> names = Arrays.asList("Anna", "Bob", "Charlie");
+names.forEach(name -> System.out.println(name));
+```
+
+```php
+public function execute(Collection $calculatedInvoiceLines, BigDecimal $exchangeRate): VatFooter
+{
+    $vatFooter = new VatFooter([]);
+
+    $calculatedInvoiceLines
+        ->groupBy(fn(InvoiceLineData $line): TaxRate => $line->taxRate)
+        ->each(function (Collection $lines, string $taxRateValue) use ($exchangeRate, $vatFooter): void {
+            $net = $this->aggregateTotal($lines->pluck("totalPrice.netInCurrency"));
+            $vat = $this->calculateVatAmount($net, TaxRate::from($taxRateValue)->rateValue());
+            $gross = $this->aggregateTotal($lines->pluck("totalPrice.grossInCurrency"));
+
+            $netInSystemCurrency = $exchangeRate !== null ? $net->multipliedBy($exchangeRate)->toScale(2, RoundingMode::HALF_UP) : null;
+            $vatInSystemCurrency = $exchangeRate !== null ? $vat->multipliedBy($exchangeRate)->toScale(2, RoundingMode::HALF_UP) : null;
+            $grossInSystemCurrency = $exchangeRate !== null ? $gross->multipliedBy($exchangeRate)->toScale(2, RoundingMode::HALF_UP) : null;
+
+            $totalPriceData = new TotalPrice(
+                netInCurrency: $net,
+                vatInCurrency: $vat,
+                grossInCurrency: $gross,
+                net: $netInSystemCurrency,
+                vat: $vatInSystemCurrency,
+                gross: $grossInSystemCurrency,
+            );
+
+            $vatFooter->setVatFooterLine(TaxRate::from($taxRateValue), $totalPriceData);
+        });
+
+    return $vatFooter;
+}
+```
