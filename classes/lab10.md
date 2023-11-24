@@ -29,3 +29,142 @@ Refleksja ma pewne wady, które mogą wpływać na wydajność, bezpieczeństwo 
 #### O czym należy pamiętać?
 
 Refleksja w programowaniu obiektowym to potężna i wszechstronna funkcja, ale powinna być używana z rozwagą i ostrożnością. Nie powinna być stosowana jako substytut dobrego projektowania i praktyk programowania, ale raczej jako uzupełnienie lub ostateczność. Refleksja powinna być stosowana tylko wtedy, gdy istnieje wyraźny i przekonujący cel, oraz gdy nie ma bardziej odpowiedniej lub prostszej alternatywy. Dodatkowo, refleksja powinna być używana oszczędnie i ostrożnie, unikając zbędnego lub nadmiernego jej wykorzystania. Podczas korzystania z refleksji ważne jest przestrzeganie pewnych najlepszych praktyk, takich jak używanie jej tylko do konkretnych, dobrze zdefiniowanych zadań; ograniczanie jej użycia do minimalnej ilości i zakresu kodu lub obiektów, które są konieczne; stosowanie jej zgodnie z jej przeznaczeniem i kontekstem; oraz upewnienie się, że jest dokumentowana i testowana przed użyciem, aby jej funkcjonalność i efekty były wyjaśnione i zweryfikowane.
+
+### Przykłady 
+
+#### Przykład 1
+
+Klasa `Calculator` zawiera prywatną metodę `multiply`, która mnoży dwie liczby. Chcemy przetestować tę metodę bez zmiany jej widoczności.
+
+```php
+class Calculator {
+    private function multiply($a, $b) {
+        return $a * $b;
+    }
+}
+```
+
+```php
+class CalculatorTest extends PHPUnit\Framework\TestCase {
+    public function testMultiply() {
+        $calculator = new Calculator();
+        $reflector = new ReflectionClass($Calculator);
+        $method = $reflector->getMethod('multiply');
+        $method->setAccessible(true);
+
+        $result = $method->invoke($calculator, 5, 3);
+        $this->assertEquals(15, $result);
+    }
+}
+```
+
+Test używa refleksji do uzyskania dostępu do prywatnej metody `multiply` w klasie `Calculator`. Następnie wywołuje tę metodę z argumentami (5, 3) i sprawdza, czy wynik mnożenia jest zgodny z oczekiwaniami.
+
+#### Przykład 2
+
+Klasa `User` przechowuje chronioną właściwość `age`. Chcemy przetestować, czy możemy zmienić i odczytać tę właściwość za pomocą refleksji.
+
+```php
+class User {
+    protected $age;
+
+    public function setAge($age) {
+        $this->age = $age;
+    }
+}
+```
+
+```php
+class UserTest extends PHPUnit\Framework\TestCase {
+    public function testAgeProperty() {
+        $user = new User();
+        $reflector = new ReflectionClass($user);
+        $property = $reflector->getProperty('age');
+        $property->setAccessible(true);
+
+        $property->setValue($user, 25);
+        $this->assertEquals(25, $property->getValue($user));
+    }
+}
+```
+
+Test używa refleksji do uzyskania dostępu do chronionej właściwości `age` w klasie `User`. Następnie ustawia tę właściwość na wartość 25 i sprawdza, czy wartość została poprawnie zapisana i odczytana.
+
+#### Przykład 3
+
+Mamy kontroler `OrderController` w aplikacji e-commerce, który zawiera prywatną metodę `calculateDiscount`. Metoda ta oblicza zniżkę na podstawie różnych czynników i jest kluczowa dla logiki biznesowej, ale nie jest eksponowana publicznie.
+
+```php
+class OrderController {
+    // ...
+
+    private function calculateDiscount($order) {
+        // Skomplikowana logika obliczania zniżki
+        return $calculatedDiscount;
+    }
+
+    public function finalizeOrder($order) {
+        // ...
+        $discount = $this->calculateDiscount($order);
+        // ...
+    }
+}
+```
+
+```php
+class OrderControllerTest extends PHPUnit\Framework\TestCase {
+    public function testCalculateDiscount() {
+        $orderController = new OrderController();
+        $reflector = new ReflectionClass($orderController);
+        $method = $reflector->getMethod('calculateDiscount');
+        $method->setAccessible(true);
+
+        $order = new Order(/* parametry zamówienia */);
+        $discount = $method->invoke($orderController, $order);
+        
+        // Sprawdzenie poprawności obliczonej zniżki
+        $this->assertEquals($expectedDiscount, $discount);
+    }
+}
+```
+
+Test sprawdza poprawność działania metody `calculateDiscount`. Refleksja pozwala na bezpośrednie wywołanie tej metody z testowanym zamówieniem i porównanie wyniku z oczekiwaną wartością zniżki.
+
+#### Przykład 4
+
+Mamy klasę `DatabaseConnection` implementującą wzorzec Singleton, z prywatną metodą `initializeConnection`, która jest wywoływana tylko raz przy pierwszym tworzeniu instancji.
+
+```php
+class DatabaseConnection {
+    private static $instance = null;
+
+    private function initializeConnection() {
+        // Inicjalizacja połączenia z bazą danych
+    }
+
+    public static function getInstance() {
+        if (self::$instance == null) {
+            self::$instance = new self();
+            self::$instance->initializeConnection();
+        }
+        return self::$instance;
+    }
+}
+```
+
+```php
+class DatabaseConnectionTest extends PHPUnit\Framework\TestCase {
+    public function testInitializeConnection() {
+        $dbConnection = DatabaseConnection::getInstance();
+        $reflector = new ReflectionClass($dbConnection);
+        $method = $reflector->getMethod('initializeConnection');
+        $method->setAccessible(true);
+
+        // Test, czy inicjalizacja została wykonana poprawnie
+        $method->invoke($dbConnection);
+        // Asercje dotyczące stanu połączenia
+    }
+}
+```
+
+Test sprawdza, czy metoda `initializeConnection` działa poprawnie. Używamy refleksji, aby wywołać tę metodę bezpośrednio, nawet jeśli jest prywatna. Test może zawierać asercje, które weryfikują, czy stan połączenia z bazą danych jest zgodny z oczekiwaniami po wykonaniu inicjalizacji.
