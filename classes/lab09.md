@@ -116,7 +116,7 @@ class InvoiceCouldNotBeDeletedException extends ApiException
 ```
 
 ```php
-/**
+    /**
      * @throws InvoiceCouldNotBeDeletedException
      */
     public function destroy(Revenue $revenue, DestroyRevenueAction $destroyRevenueAction): Response

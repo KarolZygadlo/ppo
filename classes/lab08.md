@@ -83,6 +83,8 @@ foreach ($squaredNumbers as $value) {
 
 ### Przykłady
 
+W tym fragmencie kodu PHP tworzona jest klasa `Product` z dwoma właściwościami: `name` i `price`. Następnie tworzy się tablicę `products` zawierającą trzy obiekty `Product`. Kolekcja ta jest sortowana za pomocą funkcji `usort` według ceny `(price)`, a w przypadku równych cen - według nazwy `(name)`.
+
 ```php
 class Product {
     public $name;
@@ -108,6 +110,8 @@ usort($products, function($a, $b) {
 });
 ```
 
+Tutaj mamy dwie tablice, `users` i `orders`, które reprezentują użytkowników i ich zamówienia. Używając funkcji `array_map`, każdemu użytkownikowi przypisywane są jego zamówienia. Wynikiem jest tablica asocjacyjna, gdzie każdy element zawiera informacje o użytkowniku i jego zamówieniach.
+
 ```php
 $users = [
     ['id' => 1, 'name' => 'Jan'],
@@ -127,6 +131,8 @@ $userOrders = array_map(function($user) use ($orders) {
 }, $users);
 ```
 
+W tym fragmencie kodu Java tworzona jest lista `employees` zawierająca obiekty `Employee`. Pracownicy są następnie grupowani według działu `(department)` i sortowani według wynagrodzenia `(salary)` za pomocą strumieni i kolektora `groupingBy`.
+
 ```java
 class Employee {
     String department;
@@ -143,18 +149,7 @@ Map<String, List<Employee>> groupedByDepartment = employees.stream()
     .collect(Collectors.groupingBy(Employee::getDepartment));
 ```
 
-```php
-$handleException = function($e) {
-    echo "Wystąpił wyjątek: " . $e->getMessage();
-};
-
-try {
-    // próba wykonania jakiejś operacji
-    throw new Exception("Coś poszło nie tak.");
-} catch (Exception $e) {
-    $handleException($e);
-}
-```
+W tym fragmencie kodu Java tworzony jest przycisk `JButton` z etykietą "Kliknij mnie". Do przycisku dodawany jest listener, który wyświetla komunikat w konsoli, gdy przycisk zostanie naciśnięty.
 
 ```java
 JButton button = new JButton("Kliknij mnie");
@@ -162,6 +157,8 @@ button.addActionListener(e -> {
     System.out.println("Przycisk został naciśnięty.");
 });
 ```
+
+Tutaj mamy listę `names`, zawierającą ciągi znaków "Anna", "Bob", "Charlie". Za pomocą metody `forEach` każde imię na liście jest wypisywane w konsoli.
 
 ```java
 List<String> names = Arrays.asList("Anna", "Bob", "Charlie");
