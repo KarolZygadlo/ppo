@@ -100,6 +100,7 @@ Przy użyciu takiego wyjątku w kodzie PHP, możemy dokładniej określić rodza
 
 ### Przykłady
 
+#### Przykład 1
 
 ```php
 declare(strict_types=1);
@@ -131,6 +132,7 @@ class InvoiceCouldNotBeDeletedException extends ApiException
     }
 ```
 
+#### Przykład 2
 
 ```php
 public function execute(VerifyUserData $verifyUserData): User

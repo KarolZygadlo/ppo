@@ -83,6 +83,8 @@ foreach ($squaredNumbers as $value) {
 
 ### Przykłady
 
+#### Przykład 1
+
 W tym fragmencie kodu PHP tworzona jest klasa `Product` z dwoma właściwościami: `name` i `price`. Następnie tworzy się tablicę `products` zawierającą trzy obiekty `Product`. Kolekcja ta jest sortowana za pomocą funkcji `usort` według ceny `(price)`, a w przypadku równych cen - według nazwy `(name)`.
 
 ```php
@@ -110,6 +112,8 @@ usort($products, function($a, $b) {
 });
 ```
 
+#### Przykład 2
+
 Tutaj mamy dwie tablice, `users` i `orders`, które reprezentują użytkowników i ich zamówienia. Używając funkcji `array_map`, każdemu użytkownikowi przypisywane są jego zamówienia. Wynikiem jest tablica asocjacyjna, gdzie każdy element zawiera informacje o użytkowniku i jego zamówieniach.
 
 ```php
@@ -131,6 +135,8 @@ $userOrders = array_map(function($user) use ($orders) {
 }, $users);
 ```
 
+#### Przykład 3
+
 W tym fragmencie kodu Java tworzona jest lista `employees` zawierająca obiekty `Employee`. Pracownicy są następnie grupowani według działu `(department)` i sortowani według wynagrodzenia `(salary)` za pomocą strumieni i kolektora `groupingBy`.
 
 ```java
@@ -149,6 +155,8 @@ Map<String, List<Employee>> groupedByDepartment = employees.stream()
     .collect(Collectors.groupingBy(Employee::getDepartment));
 ```
 
+#### Przykład 4
+
 W tym fragmencie kodu Java tworzony jest przycisk `JButton` z etykietą "Kliknij mnie". Do przycisku dodawany jest listener, który wyświetla komunikat w konsoli, gdy przycisk zostanie naciśnięty.
 
 ```java
@@ -157,6 +165,7 @@ button.addActionListener(e -> {
     System.out.println("Przycisk został naciśnięty.");
 });
 ```
+#### Przykład 5
 
 Tutaj mamy listę `names`, zawierającą ciągi znaków "Anna", "Bob", "Charlie". Za pomocą metody `forEach` każde imię na liście jest wypisywane w konsoli.
 
@@ -164,6 +173,8 @@ Tutaj mamy listę `names`, zawierającą ciągi znaków "Anna", "Bob", "Charlie"
 List<String> names = Arrays.asList("Anna", "Bob", "Charlie");
 names.forEach(name -> System.out.println(name));
 ```
+
+#### Przykład 6
 
 ```php
 public function execute(Collection $calculatedInvoiceLines, BigDecimal $exchangeRate): VatFooter
